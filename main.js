@@ -31,7 +31,7 @@ submitButton.addEventListener("click", (e) => {
       if (key.match(/userDetails/g)) {
         a = localStorage.getItem(key);
         b = JSON.parse(a);
-  
+        
         addNewLineElement(b);
       }
     });
@@ -43,5 +43,33 @@ submitButton.addEventListener("click", (e) => {
     li.appendChild(
       document.createTextNode(object.name + " " + object.emailId + " ")
     );
+    console.log(document.createElement("i"));
+    const a1 = document.createElement("input");
+    a1.id = "himanshu";
+    a1.type = "button";
+    a1.value = "Edit";
+    a1.addEventListener("click", () => {
+      console.log(object);
+      document.getElementById("name").value = object.name;
+      document.getElementById("email").value = object.emailId;
+      li.remove();
+    });
+    a1.className = "delete";
+    a1.style.border = "2px solid green";
+    console.log(a1);
+    li.appendChild(a1);
+  
+    const a = document.createElement("input");
+    a.type = "button";
+    a.value = "delete";
+    a.addEventListener("click", () => {
+      localStorage.removeItem("userDetails" + object.emailId);
+      li.remove();
+    });
+    a.className = "delete";
+    a.style.border = "2px solid red";
+    console.log(a);
+    li.appendChild(a);
+    console.log(li);
     ul.appendChild(li);
   }
